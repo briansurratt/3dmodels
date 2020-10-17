@@ -4,18 +4,19 @@ thinWidth = 5;
 shell = 2;
 depth = 10;
 
-//largeBaseWidth = largeWidth ;
-//thinBaseWidth = thinWidth ;
-
- largeBaseWidth = largeWidth + 2 * shell;
- thinBaseWidth = thinWidth + 2 * shell;
-
-
+largeBaseWidth = largeWidth + 2 * shell;
+thinBaseWidth = thinWidth + 2 * shell;
 
 legLength = 20;
-
-
 totalLenght = 2* legLength + largeBaseWidth;
+
+rightHandClip();
+
+module rightHandClip() {
+    mirror([1,0,0]) leftHandClip() ;
+}
+
+module leftHandClip() {
 
 linear_extrude(shell)
 polygon (
@@ -39,7 +40,7 @@ translate([legLength, largeBaseWidth - shell, 0])legWall();
 #translate([legLength+ largeBaseWidth - shell, thinBaseWidth - shell, 0]) wall(largeBaseWidth - thinBaseWidth + legLength + shell);
 
 
-
+}
 
 module legWall() {
     wall(legLength + shell);
