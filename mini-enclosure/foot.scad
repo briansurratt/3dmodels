@@ -40,25 +40,25 @@ module rightFrontFoot() {
 module footTopWithLip() {
     
     difference() {
-    union() {
-        genericFootTop();
-        legShellExtention();
-    }
+        union() {
+            genericFootTop();
+            legShellExtention();
+        }
     
     
-    translate ([-(legSide/2) - legShell - 0.5,0,totalFootHeight + (legShellHeight / 2)  ]) 
+    translate ([-(legSide/2) - legShell - 2,0,totalFootHeight + (legShellHeight / 2)  ]) 
         rotate([0,90,0]) legScrewHole();
     
-        translate ([
+
+      translate ([
         0,
-        (legSide/2) + legShell + 0.5,
+        (legSide/2) +legShell + 2,
         totalFootHeight + (legShellHeight / 2)  ]) 
-    rotate([0,90,-90]) legScrewHole();
-    
+            rotate([0,90,-90]) legScrewHole();
     
 }
 
-
+  
     
 }
 
@@ -72,7 +72,9 @@ module legScrewHole() {
 
 
 module legShellExtention() {
-            translate ([-(legSide/2), -(legSide /2), 0]) {
+            translate ([
+            -(legSide/2) - verticalShell, 
+            -(legSide /2) + verticalShell, 0]) {
          linear_extrude(totalFootHeight + legShellHeight) 
         polygon (
         [
@@ -105,11 +107,11 @@ module rearFoot() {
     }
     
     
-   translate ([0,legSide/2 + legShell + 0.5,lowerFootHeight / 2]) 
+   translate ([0,legSide/2 + legShell + verticalShell + 0.5,lowerFootHeight / 2]) 
     rotate([90,0,0])
     mirror([1,0,0])
     
-    versionNumber("1.2.0");
+    versionNumber("1.3.0");
     
 }
 }

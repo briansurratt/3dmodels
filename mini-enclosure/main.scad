@@ -13,3 +13,7 @@ module versionNumber(version) {
 //rightFrontFoot();
 rearFoot();
 //rearFoot();
+
+
+//translate ([-legSide/2, -legSide/2,27])
+//#cube ([legSide, legSide, 5]);
