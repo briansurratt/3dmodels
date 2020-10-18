@@ -12,8 +12,7 @@ magnetDiameter = 6;
 magnetOnCenter = 10;
 magnetThickness = 2;
 
-captureThickness = verticalShell + magnetThickness + plexiThickness;
-captureBottomLip = captureLength / 2;
+captureThickness = verticalShell * 2 + plexiThickness;
 captureLip = captureLength / 2;
 
 legSide = 50.5;
@@ -32,3 +31,13 @@ bottomRadius = legSide / 3;
 cutoutHeight = captureLength/5;
 pinDiameter = 1;
 
+embedExtention = 5;
+
+
+legScrewHeadThickness = 2;
+legScrewHeadDiameter = 8;
+legScrewShaftDiamter = 4;
+
+legShellHeight = 25;
+
+legShell = verticalShell + legScrewHeadThickness;

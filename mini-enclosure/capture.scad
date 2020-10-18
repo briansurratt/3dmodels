@@ -8,33 +8,53 @@ translate([-(captureThickness - verticalShell), captureThickness / 2, 0]) column
 
 module righthandDoorCorner() {
     difference() {
-    baseCapture();
+    baseCaptureWithMagnet();
     translate([magnetOnCenter,captureThickness + 1,magnetOnCenter])
         rotate([90,0,0])
         cylinder(h = magnetThickness + 2, r1 = magnetDiameter, r2 = magnetDiameter, center = false);
     }
 }
 
+module baseCaptureWithMagnet() {
+
+    thickness = captureThickness + shell - magnetThickness;
+
+    captureEnd(thickness);
+    translate([verticalShell,0,0]) rotate([0,-90,0]) captureEnd(thickness);
+
+    translate([0,verticalShell]) captureSide(verticalShell);
+    translate([0,thickness]) captureSide(magnetThickness);
+
+}
+
+
+module fixedCapture() {
+    union() {
+        baseCapture();
+        translate([- embedExtention + verticalShell, 0,0]) cube([embedExtention, captureThickness, captureLength], false);
+    }
+}
+
 module baseCapture() {
 
-captureEnd();
-translate([verticalShell,0,0]) rotate([0,-90,0]) captureEnd();
+captureEnd(captureThickness);
+translate([verticalShell,0,0]) rotate([0,-90,0]) captureEnd(captureThickness);
 
 translate([0,verticalShell]) captureSide(verticalShell);
-translate([0,captureThickness]) captureSide(verticalShell + 1);
+translate([0,captureThickness]) captureSide(verticalShell);
 
 
 }
 
-module captureEnd() {
+module captureEnd(thickness) {
     
     linear_extrude(verticalShell) {
         polygon (
             [
                 [0,0],
                 [captureLength, 0],
-                [captureLength,captureThickness],
-                [0, captureThickness]
+                [captureLength,thickness],
+                [0, thickness]
             ]
         );
     }
@@ -44,7 +64,7 @@ module captureEnd() {
 
 module doorStop() {
     linear_extrude(captureThickness)
-        capturePolygonExt(captureThickness);
+        capturePolygonExt(captureThickness); // this is using captureThickness constant arbitrarily
 }
 
 

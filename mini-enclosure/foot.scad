@@ -12,21 +12,109 @@ rotate_extrude(angle = 360, convexity = 10)
     );
 }
 
-module rearFoot() {
-    footTopWithLip();
-}
+
 
 
 module rightFrontFoot() {
-    footTopWithLip();
-    translate([
-        legSide/2 - captureThickness, 
-        -(legSide/2)   ,
-        totalFootHeight]
-    )
-        rotate([90,90,-90])
-        doorStop();
+    
+    union () {
+        footTopWithLip();
+        translate([
+            legSide/2 - captureThickness, 
+            -(legSide/2)   ,
+            totalFootHeight]
+        )
+            rotate([90,90,-90])
+            doorStop();
+        
+        translate([-legSide/2, (legSide/2) - captureThickness,0])
+         mirror(1, 0,0) 
+            fixedCapture();
+    }
+
 }
+
+
+
+
+module footTopWithLip() {
+    
+    difference() {
+    union() {
+        genericFootTop();
+        legShellExtention();
+    }
+    
+    
+    translate ([-(legSide/2) - legShell - 0.5,0,totalFootHeight + (legShellHeight / 2)  ]) 
+        rotate([0,90,0]) legScrewHole();
+    
+        translate ([
+        0,
+        (legSide/2) + legShell + 0.5,
+        totalFootHeight + (legShellHeight / 2)  ]) 
+    rotate([0,90,-90]) legScrewHole();
+    
+    
+}
+
+
+    
+}
+
+module legScrewHole() {
+    union() {
+        screwHeadDiameter = legScrewHeadDiameter + 1;
+        cylinder(legScrewHeadThickness + 1,d1 = screwHeadDiameter, d2 = screwHeadDiameter , true); 
+        cylinder(legShell + 3,d1 = legScrewShaftDiamter, d2 = legScrewShaftDiamter, true);
+    } 
+}
+
+
+module legShellExtention() {
+            translate ([-(legSide/2), -(legSide /2), 0]) {
+         linear_extrude(totalFootHeight + legShellHeight) 
+        polygon (
+        [
+        [0,0],
+        [-legShell,0],
+        [-legShell,legSide + legShell],
+        [legSide,legSide + legShell],
+        [legSide,legSide - verticalShell],
+        [verticalShell, legSide - verticalShell],
+        [verticalShell, 0]
+        ]
+        );
+        }
+}
+
+module rearFoot() {
+   
+    difference() {
+       
+        
+    union() {
+        footTopWithLip();
+        
+        translate([legSide/2 - verticalShell, (legSide/2) - captureThickness,0])
+                fixedCapture();
+        
+        translate([-legSide/2, -(legSide/2) + verticalShell ,0])
+             rotate([0,0,-90]) 
+                fixedCapture();
+    }
+    
+    
+   translate ([0,legSide/2 + legShell + 0.5,lowerFootHeight / 2]) 
+    rotate([90,0,0])
+    mirror([1,0,0])
+    
+    versionNumber("1.2.0");
+    
+}
+}
+
+
 
 
 module leftFrontFoot() {
@@ -42,25 +130,7 @@ module leftFrontFoot() {
     }  
 }
 
-module footTopWithLip() {
-    union() {
-        genericFootTop();
-         translate ([-(legSide/2), -(legSide /2), 0]) {
-        //translate ([0, 0, 0]) {
-         linear_extrude(totalFootHeight + 5) 
-        polygon (
-        [
-        [0,0],
-        [0,legSide],
-        [legSide,legSide],
-        [legSide,legSide - verticalShell],
-        [verticalShell, legSide - verticalShell],
-        [verticalShell, 0]
-        ]
-        );
-        }
-    }
-}
+
 
 module genericFootTop() {
     
@@ -69,7 +139,6 @@ module genericFootTop() {
             square(legSide, true);
         translate([0,0,-1]) 
         negativeFootRing();
-        topShaft();
     }
 
 }
