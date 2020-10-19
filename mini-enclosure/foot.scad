@@ -148,13 +148,22 @@ module genericFootTop() {
 
 module genericFootBottom() {
     
+    
     difference() {
         linear_extrude(footerShell) 
             square(legSide, true);
         cylinder(2 * footerShell, r = screwShaftRadius);
+        
+            translate([legSide  * 1/3,   ,legSide * 1/3,footerShell - 0.25])
+    scale ([0.7, 0.7, 0.7])
+    versionNumber("1.2.0");
+        
+        
     }
 
     footRing();
+    
+
 
 }
 
@@ -179,8 +188,8 @@ module footRing() {
         [screwShaftRadius, 0],
         [screwShaftRadius, screwWellDepth],
         [screwHeadRadius, screwWellDepth],
-        [screwHeadRadius, lowerFootHeight],
-        [topRadius, lowerFootHeight],
+        [screwHeadRadius, lowerFootHeight - 2],
+        [topRadius, lowerFootHeight - 2],
         [bottomRadius, 0]
     ]
     );

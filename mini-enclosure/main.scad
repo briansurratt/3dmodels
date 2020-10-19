@@ -11,9 +11,12 @@ module versionNumber(version) {
 
 //leftFrontFoot();
 //rightFrontFoot();
-rearFoot();
-//rearFoot();
 
+//rearFoot();
+//rearFoot();
 
 //translate ([-legSide/2, -legSide/2,27])
 //#cube ([legSide, legSide, 5]);
+
+
+genericFootBottom();

@@ -19,9 +19,9 @@ legSide = 50.5;
 
 lowerFootHeight = totalFootHeight / 2 - 1;
 
-screwShaftRadius = 2;  
+screwShaftRadius = 2.5 ;  
 screwWellDepth = 5;    
-screwHeadRadius = 4;   
+screwHeadRadius = 4.5;   
 screwHeadDepth = 2;    
 topRadius = legSide / 4; 
 bottomRadius = legSide / 3;   
