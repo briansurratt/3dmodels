@@ -78,13 +78,13 @@ module legShellExtention() {
          linear_extrude(totalFootHeight + legShellHeight) 
         polygon (
         [
-        [0,0],
-        [-legShell,0],
+        [-1,-1.5],
+        [-legShell,-1.5],
         [-legShell,legSide + legShell],
-        [legSide,legSide + legShell],
-        [legSide,legSide - verticalShell],
+        [legSide + 1.5,legSide + legShell],
+        [legSide + 1.5,legSide - verticalShell],
         [verticalShell, legSide - verticalShell],
-        [verticalShell, 0]
+        [verticalShell , -1.5]
         ]
         );
         }
@@ -156,7 +156,7 @@ module genericFootBottom() {
         
             translate([legSide  * 1/3,   ,legSide * 1/3,footerShell - 0.25])
     scale ([0.7, 0.7, 0.7])
-    versionNumber("1.2.0");
+    versionNumber("1.3.1");
         
         
     }

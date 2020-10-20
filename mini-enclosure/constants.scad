@@ -18,6 +18,7 @@ captureLip = captureLength / 2;
 legSide = 50.5;
 
 lowerFootHeight = totalFootHeight / 2 - 1;
+upperFootHeight = totalFootHeight / 2 + 1;
 
 screwShaftRadius = 2.5 ;  
 screwWellDepth = 5;    
