@@ -1,8 +1,8 @@
-module rearCap() {
+module leftRearCap() {
 
 difference() {
 union() {
-    #linear_extrude(totalFootHeight) 
+    linear_extrude(totalFootHeight) 
         square(legSide, true);
 
 difference() {
@@ -33,7 +33,7 @@ rotate([0,0,-90])
 topMount();
 
 
-   translate ([legSide/2  - verticalShell,legSide / 2  - captureThickness + verticalShell, 0]) #topMount();
+   translate ([legSide/2  - verticalShell,legSide / 2  - captureThickness + verticalShell, 0]) topMount();
 
 }
 
@@ -60,7 +60,8 @@ polygon([
 [0, captureLength]
 ]);
         
-    translate ([captureLength/2,-captureLength / 2, -1])
+    translate ([captureLength/2,-captureLength / 2, legShell + 1])
+        mirror([0,0,1])
     legScrewHole();
     }
 }
