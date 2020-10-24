@@ -1,16 +1,50 @@
-module leftRearCap() {
-
-difference() {
-union() {
-    linear_extrude(totalFootHeight) 
-        square(legSide, true);
-
-difference() {
-legShellExtention();
 
 
-    translate ([-(legSide/2) - legShell - 2,0,totalFootHeight + (legShellHeight / 2)  ]) 
-        rotate([0,90,0]) legScrewHole();
+module genericCap() {
+    
+    difference() {
+        union() {
+
+            capCore();
+            
+            translate([0,0,0])
+            capShellExtension();
+            
+
+            // x axis
+         //   translate([legSide/2-verticalShell, (legSide/2) - captureThickness,0]) fixedCapture();
+            // y axis
+           // translate([-legSide/2, (-legSide/2)+verticalShell ,0]) rotate([0,0,-90]) fixedCapture();
+                
+            // x axis
+            translate ([legSide/2  - verticalShell,legSide / 2  - captureThickness + verticalShell, 0]) topMount();
+            // y axis
+            translate ([-legSide/2 + captureThickness - verticalShell,-legSide / 2 + verticalShell, 0]) topMount();
+        
+        }
+
+        translate ([0,legSide/2 + legShell + verticalShell + 0.5,lowerFootHeight / 2]) 
+        rotate([90,-90,0]) mirror([1,1,0])
+            versionNumber("1.0.0");
+}
+    
+    
+}
+
+module capCore() {
+    difference() {
+        linear_extrude(totalFootHeight) square(legSide, true);
+        translate([0,0,-1])
+        cylinder(totalFootHeight + 2, d = 9);
+    }
+}
+
+module capShellExtension() {
+    difference() {
+                legShellExtention();
+
+                translate ([-(legSide/2) - legShell - 2,0,totalFootHeight + (legShellHeight / 2)]) 
+       rotate([0,90,0]) legScrewHole();
     
 
       translate ([
@@ -19,6 +53,14 @@ legShellExtention();
         totalFootHeight + (legShellHeight / 2)  ]) 
             rotate([0,90,-90]) legScrewHole();
 }
+}
+
+module leftRearCap() {
+
+difference() {
+union() {
+capCore();
+capShellExtension();
 
         translate([legSide/2-verticalShell, (legSide/2) - captureThickness,0])
             fixedCapture();
@@ -46,6 +88,8 @@ topMount();
 
 
 }
+
+
 module topMount() {
     // this is the componet that will screw into the underside of the table top
     difference() {

@@ -16,8 +16,11 @@ module versionNumber(version) {
 
 //rearFoot();
 //rearFoot();
+//leftRearCap();
 
-// leftRearCap();
+
+genericCap();
+
 
 railEdgeDepth = 2;
 railHingeAllowance = railEdgeDepth + 1;
@@ -33,18 +36,31 @@ hingeLength = railWidth * 2 + 2;
 hingePinDimeter = 2;
 
 
-translate([15, 15, 0])
-railHinge();
+//translate([15, 15, 0]) railHinge();
 
+
+module railWIP() {
 
 difference() {
- linear_extrude(railLength)  railProfile();
- 
- // hinge slot
- translate ([railEdgeDepth, -1,-1])
- cube([railEdgeDepth, railWidth + 2, railWidth + 1]);
- 
-  translate ([-1, railWidth / 2, railWidth / 2])
- rotate([0,90,0])
- cylinder (railFooterDepth , d=hingePinDimeter);
+
+    union() {
+        translate([0, railWidth / 2, 0])
+        cylinder (railDepth , d=railWidth);
+        translate([0,0, railDepth])
+        rotate([0,90,0])
+        linear_extrude(railLength)  railProfile();
+        #cube([3.5, railWidth, railEdgeDepth]);
+    }
+
+    // pin shaft
+    translate([0, railWidth / 2, 0])
+        cylinder (railFooterDepth + 4 , d=hingePinDimeter); 
+    
+    // slot for hinge plate
+    translate([-railWidth /2 - 2, -1, railEdgeDepth])
+    cube([railWidth + 2, railWidth + 2, railHingeAllowance]);
+    
 }
+
+}
+
