@@ -11,11 +11,6 @@ module referenceTile() {
 
 // tile tray
 
-trayDiameter = tileDiameter + mediumWall * 2 + margin * 2;
-trayRadius = trayDiameter / 2;
-
-trayVoidRadius = trayRadius -  mediumWall ;
-
 module trayWithWalls() {
     
     difference() {
@@ -26,8 +21,6 @@ module trayWithWalls() {
         translate ([0,0,baseHeight])  
             linear_extrude( trayWallHeight + 1) // extra for clean negative 
                 regularPolygon(6, trayVoidRadius);
-        // translate ([0,0,-topSurfaceThickness]) 
-        //     baseHoneycomb();
     }
 }
 
@@ -36,6 +29,7 @@ doorVoidThickness = mediumWall + 2;
 difference() {
     trayWithWalls();
     doorwayArray();
+    magHoleArray();
 }
 
 module doorway() {
@@ -71,15 +65,17 @@ module doorwayArray() {
     
 }
 
+module magHoleArray() {
+    circularArray(trayWidth - 2) { 
+        rotate(90) magHole();
+    }
+    
+}
 
+module circularArray(pathRadius = 10) {
+    
+    num = 6;
 
-
-
-
-
-module circularArray() {
-        num = 6;
-    pathRadius = (tileWidth / 2) + (doorVoidThickness / 2);
     
     for (i=[1:num])  {
         

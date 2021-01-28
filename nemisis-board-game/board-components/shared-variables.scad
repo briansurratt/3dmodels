@@ -9,9 +9,8 @@ tileThickness = 2.5;
 
 trayWallHeight = tileThickness * 2;
 
-topSurfaceThickness = 1;
 
-tileWidth = cos(30) * tileDiameter;
+topSurfaceThickness = 1;
 
 
 margin = 1;
@@ -25,6 +24,14 @@ baseHeight = 5;
 
 hallBaseWidth = 33;
 hallVoidWidth = hallBaseWidth - mediumWall * 2;
+
+trayDiameter = tileDiameter + mediumWall * 2 + margin * 2;
+trayRadius = trayDiameter / 2;
+
+trayVoidRadius = trayRadius -  mediumWall ;
+
+tileWidth = cos(30) * tileDiameter;
+trayWidth = cos(30) * trayRadius;
 
 
 magnetDia = 5;
