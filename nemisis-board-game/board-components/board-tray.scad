@@ -33,14 +33,10 @@ module trayWithWalls() {
 
 doorVoidThickness = mediumWall + 2;
 
-// difference() {
+difference() {
     trayWithWalls();
     doorwayArray();
-    // doorway();
-// }
-
-
-
+}
 
 module doorway() {
 
@@ -69,7 +65,7 @@ module doorwayArray() {
                     0
                 ]) 
             rotate((i-1)*60)    
-            #doorway();
+            doorway();
     
         }
     
