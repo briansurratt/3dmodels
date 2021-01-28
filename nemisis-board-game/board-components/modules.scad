@@ -25,3 +25,37 @@
                     }
 
 }
+
+module magHoleArray() {
+    circularArray(trayWidth - 3) { 
+        rotate(90) magHole();
+    }
+    
+}
+
+module circularArray(pathRadius = 10) {
+    
+    num = 6;
+
+    
+    for (i=[1:num])  {
+        
+        angle = (i * (360/num)) + 30;
+        
+            translate(
+                [
+                    pathRadius*cos(angle),
+                    pathRadius*sin(angle) ,
+                    0
+                ]) 
+            rotate((i-1)*60)    
+            #children(0);
+    
+        }
+}
+
+module versionStamp(version = "0.0.0") {
+    translate(0,0,-0.5)
+        linear_extrude (1)
+        text(version, halign = "center", valign = "center", size = 5);
+} 
