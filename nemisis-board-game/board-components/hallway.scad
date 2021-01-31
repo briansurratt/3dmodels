@@ -75,10 +75,10 @@ module verticleHallway() {
 
         }
 
-        magHoleArray();
+        #magHoleArray(skip=[1,3,4,5]);
 
         translate([0,offset,baseHeight - 1]) 
-            versionStamp("1.2.0");
+            versionStamp("1.2.1");
 
 
     }

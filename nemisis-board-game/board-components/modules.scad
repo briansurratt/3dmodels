@@ -38,25 +38,24 @@ module magHolePair() {
 
 }
 
-module magHoleArray() {
-    circularArray(trayWidth - 3, skip=[3]) { 
+module magHoleArray(skip=[]) {
+
+    circularArray(trayWidth - 3, skip) { 
         rotate([180,0,90]) magHole();
     }
     
 }
 
-module circularArray(pathRadius = 10, skip=[]) {
-    
-    echo(pathRadius);
-    echo(skip);
+// the skipList parameter allows specific elements in the 
+// circular array to be omitted.  This will be used when
+// creating hallway peices.
+module circularArray(pathRadius = 10, skipList=[]) {
 
     num = 6;
 
     for (i=[1:num])  {
 
-        echo ("edge",i);
-
-        if (!skipEntry) {
+        if (!search(i, skipList)) {
             
             angle = (i * (360/num)) + 30;
         
@@ -71,9 +70,7 @@ module circularArray(pathRadius = 10, skip=[]) {
     
         }
 
-
     }
-
 
 }
 
