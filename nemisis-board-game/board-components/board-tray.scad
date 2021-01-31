@@ -33,6 +33,7 @@ difference() {
     doorwayArray();
     magHoleArray();
     versionStamp("1.2.1");
+    #hallwayArray();
 }
 
 module doorway() {
@@ -87,5 +88,33 @@ module baseHoneycomb() {
             }
 
     }
+    
+}
+
+module hallNumber (n = "0") {
+    linear_extrude(1)
+    text(n, font = "Arial Black:style=Bold", size=5);
+
+}
+
+module hallwayArray() {
+
+    num = 6;
+    pathRadius = (tileWidth / 2)  -  5;
+    
+    for (i=[1:num])  {
+        
+        angle = (i * (360/num)) + 30;
+        
+            translate(
+                [
+                    pathRadius*cos(angle),
+                    pathRadius*sin(angle) ,
+                    baseHeight - 0.5
+                ]) 
+            rotate((i-1)*60)    
+            hallNumber(str(i));
+    
+        }
     
 }
