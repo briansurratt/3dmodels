@@ -33,3 +33,5 @@ trayWidth = cos(30) * trayRadius;
 magnetDia = 5;
 magnetThickness = 2;
 magnetMargin = 0.25;
+
+roomNumberSize = 6;

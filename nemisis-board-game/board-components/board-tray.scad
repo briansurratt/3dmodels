@@ -34,8 +34,11 @@ difference() {
     magHoleArray();
     versionStamp("1.2.2");
     doorMarker();
-    
+    roomNumberRelief();
+    // floorTextureArray();
 }
+
+roomNumber(2);    
 
 module doorMarker() {
     
@@ -82,4 +85,43 @@ module doorwayArray() {
     
         }
     
+}
+
+module roomNumberRelief() {
+    translate([0,0, baseHeight - 0.5])
+    linear_extrude(1)
+    regularPolygon(6, r=roomNumberSize + 1);
+}
+
+module roomNumber(n = 1) {
+    translate([-roomNumberSize/2,-roomNumberSize/2, baseHeight - 1])
+    linear_extrude(1)
+    text(str(n), font = "Arial Black:style=Bold", size=roomNumberSize);
+}
+
+module floorTextureArray() {
+    circularArray(roomNumberSize + 2) 
+        floorTexture();
+}
+
+module floorTexture() {
+
+    w1 = 7;
+    w2 = 25;
+    l = 25;
+
+    translate([0,0, baseHeight - 0.5])
+
+    linear_extrude(1)
+    // square(size=[7, 7], center=true);
+    
+    polygon(
+        [
+            [w1/2, 0],
+            [-w1/2, 0],
+            [-w2/2, l],
+            [w2/2, l]
+        ]
+    );
+
 }
