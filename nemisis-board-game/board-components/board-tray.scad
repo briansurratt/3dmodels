@@ -26,12 +26,14 @@ module trayWithWalls() {
 
 doorVoidThickness = mediumWall + 2;
 
+// #referenceTile();
+
 difference() {
     trayWithWalls();
     doorwayArray();
     magHoleArray();
     translate([0,0,baseHeight - 1]) 
-    versionStamp("1.0.2");
+    versionStamp("1.2.0");
 }
 
 module doorway() {

@@ -11,7 +11,7 @@
 
     translate ([-magHoleThickness/2,0,0])
         rotate([0,0,90])
-            translate ([0,0,magHoleDiameter/2 + 1])
+            translate ([0,0,-magHoleDiameter/2 - 1])
                 rotate([90,0,0])
     
                     union() {
@@ -26,21 +26,39 @@
 
 }
 
+module magHolePair() {
+
+    hexSide = trayRadius * sin(30) * 2;
+    magHoleSpacing = hexSide / 3;
+    magHoleOffset = magHoleSpacing / 2 - magnetDia / 2;
+
+    translate([magHoleOffset, 0,0]) rotate(90) magHole();
+    translate([-magHoleOffset, 0,0]) rotate(90) magHole();
+
+
+}
+
 module magHoleArray() {
-    circularArray(trayWidth - 3) { 
-        rotate(90) magHole();
+    circularArray(trayWidth - 3, skip=[3]) { 
+        rotate([180,0,90]) magHole();
     }
     
 }
 
-module circularArray(pathRadius = 10) {
+module circularArray(pathRadius = 10, skip=[]) {
     
+    echo(pathRadius);
+    echo(skip);
+
     num = 6;
 
-    
     for (i=[1:num])  {
-        
-        angle = (i * (360/num)) + 30;
+
+        echo ("edge",i);
+
+        if (!skipEntry) {
+            
+            angle = (i * (360/num)) + 30;
         
             translate(
                 [
@@ -52,6 +70,11 @@ module circularArray(pathRadius = 10) {
             #children(0);
     
         }
+
+
+    }
+
+
 }
 
 module versionStamp(version = "0.0.0") {

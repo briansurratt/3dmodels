@@ -9,10 +9,6 @@ tileThickness = 2.5;
 
 trayWallHeight = tileThickness * 2;
 
-
-topSurfaceThickness = 1;
-
-
 margin = 1;
 
 thinWall = nozzelDiameter * 3;
@@ -20,7 +16,7 @@ mediumWall = nozzelDiameter * 5;
 thickWall = nozzelDiameter * 7;
 
 // this is the "floor"
-baseHeight = 5;
+baseHeight = 7;
 
 hallBaseWidth = 33;
 hallVoidWidth = hallBaseWidth - mediumWall * 2;

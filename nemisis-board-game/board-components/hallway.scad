@@ -31,37 +31,42 @@ module simpleHallway() {
 
     difference () {
         
-        hallway(tileWidth);
+        hallway(trayWidth * 2);
 
-        xOffset = tileWidth / 2 - 3;
+        xOffset = trayWidth - 3;
 
         translate([xOffset,0,0]) 
-            magHole();
+            rotate([180,0,0]) magHole();
 
         translate([-xOffset,0,0]) 
-            magHole();
+            rotate([180,0,0]) magHole();
 
 
         translate([0,0,baseHeight - 1]) 
-            versionStamp("1.0.1");
+            versionStamp("1.2.0");
 
     }
 
 
 }
 
-// simpleHallway() ;
+
+//  simpleHallway() ;
 verticleHallway();
 
 module verticleHallway() {
 
+    // this works by laying down the base hex and 
+    // interecting it with a peice of hallway
+    // this gets us a hallway with the proper 60
+    // degree ends
+
+
     offset =  trayWidth / 2;
 
     difference() {
-        
 
         intersection() {
-
             linear_extrude(baseHeight + trayWallHeight) regularPolygon(6, trayRadius);
             translate([0,offset,0]) {
                 hallway(100);
@@ -73,7 +78,7 @@ module verticleHallway() {
         magHoleArray();
 
         translate([0,offset,baseHeight - 1]) 
-            versionStamp("1.0.1");
+            versionStamp("1.2.0");
 
 
     }
