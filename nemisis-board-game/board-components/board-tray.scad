@@ -32,8 +32,23 @@ difference() {
     trayWithWalls();
     doorwayArray();
     magHoleArray();
-    versionStamp("1.2.1");
-    #hallwayArray();
+    versionStamp("1.2.2");
+    doorMarker();
+    
+}
+
+module doorMarker() {
+    
+    pathRadius = -trayWidth + 5;
+
+    rotate(30)
+    translate([
+        pathRadius*cos(60),
+        pathRadius*sin(60),
+        baseHeight - 0.5])
+    linear_extrude (1)
+    regularPolygon(3, 3);
+
 }
 
 module doorway() {
@@ -64,56 +79,6 @@ module doorwayArray() {
                 ]) 
             rotate((i-1)*60)    
             doorway();
-    
-        }
-    
-}
-
-module baseHoneycomb() {
-    
-    radius = trayRadius - thickWall;
-            
-    difference() {
-        linear_extrude(baseHeight) 
-            regularPolygon(6, radius);
-    
-        linear_extrude(baseHeight)
-            translate([-radius,-radius,0]) {
-                honeycomb(
-                x = radius * 2, 
-                y = radius * 2, 
-                dia = 5, 
-                wall = thinWall
-                );
-            }
-
-    }
-    
-}
-
-module hallNumber (n = "0") {
-    linear_extrude(1)
-    text(n, font = "Arial Black:style=Bold", size=5);
-
-}
-
-module hallwayArray() {
-
-    num = 6;
-    pathRadius = (tileWidth / 2)  -  5;
-    
-    for (i=[1:num])  {
-        
-        angle = (i * (360/num)) + 30;
-        
-            translate(
-                [
-                    pathRadius*cos(angle),
-                    pathRadius*sin(angle) ,
-                    baseHeight - 0.5
-                ]) 
-            rotate((i-1)*60)    
-            hallNumber(str(i));
     
         }
     
