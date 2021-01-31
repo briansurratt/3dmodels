@@ -77,5 +77,6 @@ module circularArray(pathRadius = 10, skipList=[]) {
 module versionStamp(version = "0.0.0") {
     translate(0,0,-0.5)
         linear_extrude (1)
+        mirror([1,0,0])
         text(version, halign = "center", valign = "center", size = 5);
 } 

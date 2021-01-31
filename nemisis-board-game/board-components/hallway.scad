@@ -42,8 +42,8 @@ module simpleHallway() {
             rotate([180,0,0]) magHole();
 
 
-        translate([0,0,baseHeight - 1]) 
-            versionStamp("1.2.0");
+        // translate([0,0,baseHeight - 1]) 
+            versionStamp("1.2.1");
 
     }
 
@@ -51,8 +51,8 @@ module simpleHallway() {
 }
 
 
-//  simpleHallway() ;
-verticleHallway();
+ simpleHallway() ;
+// verticleHallway();
 
 module verticleHallway() {
 
@@ -75,11 +75,9 @@ module verticleHallway() {
 
         }
 
-        #magHoleArray(skip=[1,3,4,5]);
-
-        translate([0,offset,baseHeight - 1]) 
-            versionStamp("1.2.1");
-
+        magHoleArray(skip=[1,3,4,5]);
+        translate([0, offset, 0])
+        versionStamp("1.2.2");
 
     }
 

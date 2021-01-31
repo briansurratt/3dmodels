@@ -32,8 +32,7 @@ difference() {
     trayWithWalls();
     doorwayArray();
     magHoleArray();
-    translate([0,0,baseHeight - 1]) 
-    versionStamp("1.2.0");
+    versionStamp("1.2.1");
 }
 
 module doorway() {
