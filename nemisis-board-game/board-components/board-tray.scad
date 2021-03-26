@@ -1,3 +1,9 @@
+
+// change log
+// 
+// 1.3.0 - added a stand off on one vertext, for use
+//       a starting point for counting door numbers
+
 include <modules.scad>;
 include <shared-variables.scad>;
 include <honeycomb.scad>;
@@ -15,7 +21,8 @@ module trayWithWalls() {
     
     difference() {
         // base of the tray and walls
-        linear_extrude(baseHeight + trayWallHeight) regularPolygon(6, trayRadius);
+        linear_extrude(baseHeight + trayWallHeight) 
+        roomHex();
 
         // take out space for tile
         translate ([0,0,baseHeight])  
@@ -24,68 +31,27 @@ module trayWithWalls() {
     }
 }
 
-doorVoidThickness = mediumWall + 2;
 
-// #referenceTile();
+
+#referenceTile();
 
 difference() {
     trayWithWalls();
     doorwayArray();
     magHoleArray();
-    versionStamp("1.2.2");
-    doorMarker();
+    versionStamp("1.3.0");
+   
     roomNumberRelief();
     // floorTextureArray();
 }
 
 roomNumber(2);    
 
-module doorMarker() {
-    
-    pathRadius = -trayWidth + 5;
+ doorMarker();
 
-    rotate(30)
-    translate([
-        pathRadius*cos(60),
-        pathRadius*sin(60),
-        baseHeight - 0.5])
-    linear_extrude (1)
-    regularPolygon(3, 3);
 
-}
 
-module doorway() {
 
-    translate([
-            hallVoidWidth/2,
-            -doorVoidThickness / 2,
-            baseHeight
-        ]) 
-        rotate(90)
-            cube([doorVoidThickness, hallVoidWidth , trayWallHeight + 1 ]);
-    
-}
-
-module doorwayArray() {
-    num = 6;
-    pathRadius = (tileWidth / 2) + (doorVoidThickness / 2);
-    
-    for (i=[1:num])  {
-        
-        angle = (i * (360/num)) + 30;
-        
-            translate(
-                [
-                    pathRadius*cos(angle),
-                    pathRadius*sin(angle) ,
-                    0
-                ]) 
-            rotate((i-1)*60)    
-            doorway();
-    
-        }
-    
-}
 
 module roomNumberRelief() {
     translate([0,0, baseHeight - 0.5])

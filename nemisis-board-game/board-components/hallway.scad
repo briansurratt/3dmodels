@@ -1,12 +1,21 @@
 include <shared-variables.scad>;
 include <modules.scad>;
 
+module hallwayRough(len = 50) {
+    cube([len,hallBaseWidth ,baseHeight+ trayWallHeight]);
+}
+
+module centeredHallwayRough(len = 50) { 
+    translate([-len/2, -hallBaseWidth / 2, 0]) 
+    hallwayRough(len);
+}
+
 module hallway(len = 50) {
 
     translate([-len/2, -hallBaseWidth / 2, 0]) {
         
         difference() {
-            cube([len,hallBaseWidth ,baseHeight+ trayWallHeight]);
+            hallwayRough();
             translate([0,(hallBaseWidth-hallVoidWidth) / 2,baseHeight])
                 cube([len + 1,hallVoidWidth,trayWallHeight + 1]);
         }
@@ -50,9 +59,11 @@ module simpleHallway() {
 
 }
 
-
- simpleHallway() ;
-// verticleHallway();
+// %roomBlank();
+hipHallway();
+// mirror([0,1,0])
+// hipHallway();
+//  simpleHallway() ;
 
 module verticleHallway() {
 
@@ -67,7 +78,7 @@ module verticleHallway() {
     difference() {
 
         intersection() {
-            linear_extrude(baseHeight + trayWallHeight) regularPolygon(6, trayRadius);
+           roomBlank();
             translate([0,offset,0]) {
                 hallway(100);
             }
@@ -84,3 +95,84 @@ module verticleHallway() {
 
 
 }
+
+module roomBlank() {
+    linear_extrude(totalHeight) regularPolygon(6, trayRadius);
+}
+
+module hipHallway() {
+
+    bump = 1;
+    len = trayWidth * 2;
+    offset =  trayWidth / 2;
+
+    difference() {
+
+        // this is the base and walls of the hallway
+        union() {
+
+            translate([0, bump + hallBaseWidth / 2, 0])
+            centeredHallwayRough(55);
+
+            // bottom entrance
+            intersection() {
+                    
+                translate([-tileDiameter/2, bump , 0])
+                cube([tileDiameter, tileDiameter, totalHeight] );
+
+                rotate([0,0,30])
+                centeredHallwayRough(len);
+
+            }
+
+            // top entrance
+            intersection() {
+
+                translate([-tileDiameter/2, bump, 0])
+                cube([tileDiameter, tileDiameter, totalHeight] );
+                
+                rotate([0,0,-30])
+                centeredHallwayRough(len);
+
+            }
+        }
+
+
+        // this is the void for the hallway
+        union() {
+            
+            intersection() {
+                translate([-tileDiameter/2, bump + (hallBaseWidth-hallVoidWidth) / 2, 0])
+                cube([tileDiameter, tileDiameter, totalHeight + 2] );
+                translate([-cos(30) * 2,sin(30) * 2,0])
+                rotate([0,0,-30])
+                centerHallwayVoid(len);
+            }
+
+
+            intersection() {
+                translate([-tileDiameter/2, bump + (hallBaseWidth-hallVoidWidth) / 2, 0])
+                cube([tileDiameter, tileDiameter, totalHeight + 2] );
+                translate([cos(30) * 2,sin(30) * 2,0])
+                rotate([0,0,30])
+                centerHallwayVoid(len);
+            }
+
+            translate([0, bump + (hallVoidWidth / 2) + (hallBaseWidth-hallVoidWidth) / 2, 0])
+            centerHallwayVoid(55);
+
+        }
+
+        translate([0, bump + (hallVoidWidth / 2), 0])
+        versionStamp("1.0.0");
+
+    }
+
+
+}
+
+module centerHallwayVoid(len = 50)  {
+    translate([-len/2,-hallVoidWidth / 2,baseHeight])
+    cube([len + 1,hallVoidWidth,trayWallHeight + 1]);
+}
+

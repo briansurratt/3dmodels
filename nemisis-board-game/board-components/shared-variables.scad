@@ -21,6 +21,8 @@ baseHeight = 7;
 hallBaseWidth = 33;
 hallVoidWidth = hallBaseWidth - mediumWall * 2;
 
+totalHeight = baseHeight + trayWallHeight;
+
 trayDiameter = tileDiameter + mediumWall * 2 + margin * 2;
 trayRadius = trayDiameter / 2;
 
@@ -35,3 +37,4 @@ magnetThickness = 2;
 magnetMargin = 0.25;
 
 roomNumberSize = 6;
+doorVoidThickness = mediumWall + 2;
