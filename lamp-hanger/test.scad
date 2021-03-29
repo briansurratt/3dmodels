@@ -6,9 +6,6 @@ include <constants.scad>
 //railTest();
 
 
-echo (bridgingWidth);
-
-
 difference() {
     cube ([shellW, shellL, shellH], true);
     translate ([shell,0, 0])
