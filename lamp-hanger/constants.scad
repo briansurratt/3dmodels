@@ -36,7 +36,7 @@ tuberInset = 7.5;
 // distance to shift in the y axis 
 ribOffset = foundationL/2 * 2/3;
 
-wireDia = 5; // 4.7 + sum padding
+wireDia = 7; // 4.7 + sum padding
 wireAllowance = railSide / 2;
 
 clipWidth = 25;
