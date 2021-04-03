@@ -18,22 +18,8 @@ module versionNumber(version) {
 //rearFoot();
 //leftRearCap();
 
-
-genericCap();
-
-
-railEdgeDepth = 2;
-railHingeAllowance = railEdgeDepth + 1;
-
-railFooterDepth = railEdgeDepth * 2 + railHingeAllowance; // the base of the rail, below the plexi
-railWallDepth = 2;
-railDepth = railFooterDepth + railWallDepth; // overall depth of the rail
-railShellThickness = 2; // thickness of the rail walls
-railWidth = railShellThickness * 2 + plexiThickness;
-railLength = 10;
-
-hingeLength = railWidth * 2 + 2;
-hingePinDimeter = 2;
+footTopWithLip();
+//genericCap();
 
 
 //translate([15, 15, 0]) railHinge();

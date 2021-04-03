@@ -25,7 +25,7 @@ module genericCap() {
 
         translate ([0,legSide/2 + legShell + verticalShell + 0.5,lowerFootHeight / 2]) 
         rotate([90,-90,0]) mirror([1,1,0])
-            versionNumber("1.0.0");
+            versionNumber("1.1.0");
 }
     
     
@@ -36,6 +36,7 @@ module capCore() {
         linear_extrude(totalFootHeight) square(legSide, true);
         translate([0,0,-1])
         cylinder(totalFootHeight + 2, d = 9);
+        #translate([0,0,totalFootHeight-2]) cylinder(3, d = 10);
     }
 }
 
