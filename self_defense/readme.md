@@ -10,4 +10,4 @@ The SCAD file imports `StarWarsRebel.stl` [(direct link)](https://cdn.thingivers
 
 For the final print, I used a red transparent filament from Prusa.  This picture looks a little rough, but reflects being carried for several months.
 
-![Revel Allience Key Chain](./photo.jpg)
+![Rebel Allience Key Chain](./photo.jpg)
