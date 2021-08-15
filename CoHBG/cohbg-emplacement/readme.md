@@ -4,5 +4,8 @@ This model is designed to hold the emplacement models in the [Company of Heroes:
 
 The tray was modeled in [OpenSCAD](https://openscad.org/).  The script is available [here](cohbg-emplacement-tray.scad).
 
-Tray model as rendered in OpenSCAD.
-![](cohbg-emplacement-tray-render.png)
+
+![](empty-tray.jpg)
+
+![](tray-with-models.jpg)
+
