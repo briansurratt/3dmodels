@@ -42,7 +42,7 @@ module lettering() {
     translate([-42.5,  -5, - wallHeight / 2 + 1]) {
     
         linear_extrude(height = 1.5) {
-            #text("emplacements", font = "Liberation Sans");
+            text("emplacements", font = "Liberation Sans");
         }
    
     }
