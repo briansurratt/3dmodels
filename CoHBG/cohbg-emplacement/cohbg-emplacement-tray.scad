@@ -16,7 +16,8 @@ count=8;
 unitHeight= 13.75;   // the vertical height of the emplacement models
 unitWidth=63.5;      // the width of the widest part of the emplacement model
 
-filletRadius = 3;
+filletRadius = 4;
+filletWall = wallThickness;
 
 // the next two variables define the size of the void to hold the emplacement models
 innerLength = 1 + (count * unitHeight) + (2 * margin);
@@ -42,7 +43,7 @@ module innerVoid() {
 
 module lettering() {
 
-    translate([-42.5,  -5, - wallHeight / 2 + 1]) {
+    translate([-45.5,  -4, - wallHeight / 2 + 1]) {
     
         linear_extrude(height = 1.5) {
             text("emplacements", font = "Liberation Sans");
@@ -53,7 +54,7 @@ module lettering() {
 }
 
 
-%difference() {
+difference() {
         
     cube(size=[totalLength, totalWidth, wallHeight], center=true);
     translate([0, 0, baseHeight]) {
@@ -72,7 +73,7 @@ module filletEdge(l = 10, r = 2, w = 1) {
 
     cubeSide = r + w;
 
-    #translate([w, w, 0]) {
+    translate([w, w, 0]) {
         
         difference() {
             
@@ -93,34 +94,56 @@ module filletEdge(l = 10, r = 2, w = 1) {
 
 module bottomFillets() {
 
-
-    filletWall = 1;
-
     bottomFilletAdjustment = baseHeight - filletWall;
 
     // negative x end
     translate([totalLength/2 * -1, 0,bottomFilletAdjustment])
     rotate([90,0,0])
-    #filletEdge(totalWidth,  filletRadius, filletWall);
+    filletEdge(totalWidth,  filletRadius, filletWall);
 
 
     // // positive x end
     translate([totalLength/2, 0,bottomFilletAdjustment])
     mirror([1,0,0])
     rotate([90,0,0])
-    #filletEdge(totalWidth,  filletRadius, filletWall);
+    filletEdge(totalWidth,  filletRadius, filletWall);
 
 
     // negative y end
     translate([ 0,-totalWidth/2,bottomFilletAdjustment])
     rotate([90,0,0])
     rotate([0,90,0])
-    #filletEdge(totalLength,  filletRadius, filletWall);
+    filletEdge(totalLength,  filletRadius, filletWall);
 
     // positive y end
     translate([ 0,totalWidth/2,bottomFilletAdjustment])
     rotate([90,0,0])
     rotate([0,-90,0])
-    #filletEdge(totalLength,  filletRadius, filletWall);
+    filletEdge(totalLength,  filletRadius, filletWall);
     
+}
+
+
+module verticalFillets() {
+    
+    // -x , -y corner
+    translate([totalLength/-2,totalWidth/-2,0])
+    filletEdge(wallHeight,  filletRadius, filletWall);
+
+    // +x, -y corner
+    translate([totalLength/2,totalWidth/-2,0])
+    rotate([0,0,90])
+    filletEdge(wallHeight,  filletRadius, filletWall);
+
+
+    // -x, +y corner
+    translate([totalLength/-2,totalWidth/2,0])
+    rotate([0,0,-90])
+    filletEdge(wallHeight,  filletRadius, filletWall);
+
+    // +x, +y corner
+    translate([totalLength/2,totalWidth/2,0])
+    rotate([0,0,180])
+    filletEdge(wallHeight,  filletRadius, filletWall);
+
 }
