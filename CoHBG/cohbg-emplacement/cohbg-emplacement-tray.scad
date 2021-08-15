@@ -54,19 +54,35 @@ module lettering() {
 }
 
 
-difference() {
-        
-    cube(size=[totalLength, totalWidth, wallHeight], center=true);
-    translate([0, 0, baseHeight]) {
-        innerVoid();
+module shell() {
+
+    difference() {
+            
+        cube(size=[totalLength, totalWidth, wallHeight], center=true);
+        translate([0, 0, baseHeight]) {
+            innerVoid();
+        }
+        lettering();
+
     }
-    lettering();
 
 }
 
-translate([0,0,wallHeight/-2 ]) {
-    bottomFillets();
+
+module main() {
+
+    union() {
+       shell();
+    translate([0,0,wallHeight/-2 ]) {
+        bottomFillets();
+    }
+    verticalFillets();
+    }
+
 }
+
+main();
+
 
 
 module filletEdge(l = 10, r = 2, w = 1) {
