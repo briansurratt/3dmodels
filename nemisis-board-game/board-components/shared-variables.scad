@@ -59,7 +59,7 @@ hallSlotLength = hallTabLength + margin;
 hallSlotWidth = hallTabWidth + margin;
 hallSlotDepth = totalHeight + margin;
 
-trayDiameter = tileDiameter + (mediumWall + margin + hallSlotWidth) * 2;
+trayDiameter = tileDiameter + (mediumWall + margin + hallSlotWidth+ margin * 2) * 2;
 
 trayRadius = trayDiameter / 2;
 trayVoidRadius = trayRadius -  mediumWall ;
