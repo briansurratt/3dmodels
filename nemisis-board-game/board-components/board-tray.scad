@@ -10,7 +10,7 @@ include <honeycomb.scad>;
 
 
 module referenceTile() {
- translate([0,0,baseHeight]) 
+ translate([0,0,trayDepth]) 
     linear_extrude( tileThickness)  
         regularPolygon(6, tileDiameter / 2);
 }
@@ -25,7 +25,7 @@ module trayWithWalls() {
         roomHex();
 
         // take out space for tile
-        translate ([0,0,baseHeight])  
+        translate ([0,0,trayDepth])  
             linear_extrude( trayWallHeight + 1) // extra for clean negative 
                 regularPolygon(6, trayVoidRadius);
     }
@@ -33,18 +33,30 @@ module trayWithWalls() {
 
 
 
-%referenceTile();
+// %referenceTile();
 
 difference() {
     trayWithWalls();
     doorwayArray();
-    versionStamp("3.0.1");
+    versionStamp("3.0.3");
    hallwayVoids();
     roomNumberRelief();
     floorTextureArray();
+    tileSeat();
 }
 
 roomNumber(2);    
+
+
+
+module tileSeat() {
+
+    translate([0,0,trayDepth - tileVoidDepth])
+    linear_extrude( tileVoidDepth) 
+        regularPolygon(6, tileVoidRadius);
+
+
+}
 
 module hallwayVoids() {
     
@@ -76,15 +88,22 @@ module hallwayReceiver() {
 
 
 module roomNumberRelief() {
-    translate([0,0, baseHeight - 0.5])
-    linear_extrude(1)
+    translate([0,0, trayDepth - textureDepth + smallallowance])
+    linear_extrude(textureDepth)
     regularPolygon(6, r=roomNumberSize + 1);
 }
 
 module roomNumber(n = 1) {
-    translate([-roomNumberSize/2,-roomNumberSize/2, baseHeight - 1])
-    linear_extrude(1)
-    text(str(n), font = "Arial Black:style=Bold", size=roomNumberSize);
+
+    translate([-roomNumberSize/2,-roomNumberSize/2, 0 ]) {
+        
+        linear_extrude(trayDepth - tileVoidDepth) {
+            
+            text(str(n), font = "Arial Black:style=Bold", size=roomNumberSize);
+
+        }
+
+    }
 }
 
 module floorTextureArray() {
@@ -98,9 +117,9 @@ module floorTexture() {
     w2 = 25;
     l = 25;
 
-    translate([0,0, baseHeight - 0.5])
+    translate([0,0, trayDepth - textureDepth + smallallowance])
 
-    linear_extrude(1)
+    linear_extrude(textureDepth)
     // square(size=[7, 7], center=true);
     
     polygon(

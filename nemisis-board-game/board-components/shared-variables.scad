@@ -19,6 +19,10 @@ thickWall = nozzelDiameter * 7;
 
 // this is the "floor"
 baseHeight = 7;
+textureDepth = 2;
+
+tileVoidRadius = (tileDiameter + margin) / 2;
+tileVoidDepth = tileThickness / 2;
 
 
 
