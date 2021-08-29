@@ -113,7 +113,6 @@ module doorway() {
 
 module doorwayArray() {
     num = 6;
-    pathRadius = (tileWidth / 2) + (doorVoidThickness / 2);
     
     for (i=[1:num])  {
         
@@ -121,8 +120,8 @@ module doorwayArray() {
         
             translate(
                 [
-                    pathRadius*cos(angle),
-                    pathRadius*sin(angle) ,
+                    doorPathRadius*cos(angle),
+                    doorPathRadius*sin(angle) ,
                     0
                 ]) 
             rotate((i-1)*60)    

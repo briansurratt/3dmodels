@@ -10,6 +10,8 @@ tileThickness = 2.5;
 trayWallHeight = tileThickness * 2;
 
 margin = 1;
+allowance = 0.5;
+smallallowance = 0.25;
 
 thinWall = nozzelDiameter * 3;
 mediumWall = nozzelDiameter * 5;
@@ -18,18 +20,13 @@ thickWall = nozzelDiameter * 7;
 // this is the "floor"
 baseHeight = 7;
 
+
+
 hallBaseWidth = 33;
-hallVoidWidth = hallBaseWidth - mediumWall * 2;
+hallVoidWidth = hallBaseWidth + allowance;
 
-totalHeight = baseHeight + trayWallHeight;
 
-trayDiameter = tileDiameter + mediumWall * 2 + margin * 2;
-trayRadius = trayDiameter / 2;
 
-trayVoidRadius = trayRadius -  mediumWall ;
-
-tileWidth = cos(30) * tileDiameter;
-trayWidth = cos(30) * trayRadius;
 
 
 magnetDia = 5;
@@ -38,3 +35,45 @@ magnetMargin = 0.25;
 
 roomNumberSize = 6;
 doorVoidThickness = mediumWall + 2;
+
+
+
+standardDepth = 3;                // starting point for all vertical dimensions
+
+hallTabDepth = standardDepth;     // how deep the male part of the hallway attachment go
+hallTabLength = hallBaseWidth;    
+hallTabWidth = standardDepth;     
+
+
+// this is how thick the filler walls will be
+wallInsertThickness = standardDepth; 
+
+
+
+// the vertical height of the tray without walls;
+trayDepth = standardDepth + hallTabDepth + smallallowance;
+
+totalHeight = trayDepth + trayWallHeight;
+
+hallSlotLength = hallTabLength + allowance;
+hallSlotWidth = hallTabWidth + allowance;
+hallSlotDepth = totalHeight + allowance;
+
+trayDiameter = tileDiameter + (mediumWall + margin + hallSlotWidth) * 2;
+
+trayRadius = trayDiameter / 2;
+trayVoidRadius = trayRadius -  mediumWall ;
+
+tileWidth = cos(30) * tileDiameter;
+trayWidth = cos(30) * trayRadius;
+
+hallSlotRadius = trayWidth - mediumWall - hallSlotWidth / 2;
+
+doorPathRadius = trayWidth - doorVoidThickness / 2  + mediumWall;
+    
+    // the gap between the tab and the rest of the hallway
+hallTabReach = trayWidth -  + hallSlotRadius;
+
+hallReceiverWidth = hallTabReach + margin;
+hallReceiverLength = hallVoidWidth;
+hallReceiverDepth = trayDepth;

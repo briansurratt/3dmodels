@@ -21,7 +21,7 @@ module trayWithWalls() {
     
     difference() {
         // base of the tray and walls
-        linear_extrude(baseHeight + trayWallHeight) 
+        linear_extrude(totalHeight) 
         roomHex();
 
         // take out space for tile
@@ -33,24 +33,46 @@ module trayWithWalls() {
 
 
 
-#referenceTile();
+%referenceTile();
 
 difference() {
     trayWithWalls();
     doorwayArray();
-    magHoleArray();
-    versionStamp("1.3.0");
-   
+    versionStamp("3.0.0");
+   hallwayVoids();
     roomNumberRelief();
-    // floorTextureArray();
+    floorTextureArray();
 }
 
 roomNumber(2);    
 
- doorMarker();
+module hallwayVoids() {
+    
+    circularArray(pathRadius = hallSlotRadius) {
+        hallwaySlot();
+    }
+
+    circularArray(pathRadius = hallSlotRadius) {
+        hallwayReceiver();
+    }
+
+}
+
+module hallwaySlot() {
+
+    translate([-hallSlotLength/2, -hallSlotWidth/2, 0]) {
+        cube([hallSlotLength, hallSlotWidth, hallSlotDepth]);
+    }
+        
+}
 
 
-
+// the vertical allowance to accomidate the doorway reach
+module hallwayReceiver() {
+    translate([-hallReceiverLength/2,0, standardDepth]) {
+        cube([hallReceiverLength, hallReceiverWidth, hallReceiverDepth]);
+    }
+}
 
 
 module roomNumberRelief() {
