@@ -38,7 +38,7 @@ module trayWithWalls() {
 difference() {
     trayWithWalls();
     doorwayArray();
-    versionStamp("3.0.3");
+    versionStamp("3.0.4");
    hallwayVoids();
     roomNumberRelief();
     floorTextureArray();
@@ -114,12 +114,12 @@ module floorTextureArray() {
 module floorTexture() {
 
     w1 = 7;
-    w2 = 25;
+    w2 = 35.5;
     l = 25;
 
     translate([0,0, trayDepth - textureDepth + smallallowance])
 
-    linear_extrude(textureDepth)
+    #linear_extrude(textureDepth)
     // square(size=[7, 7], center=true);
     
     polygon(
