@@ -24,6 +24,24 @@ module hallway(len = 50) {
 
 }
 
+module hallwayInsert() {
+
+// this is the male bit
+    cube([hallBaseWidth, hallTabWidth, trayDepth]);
+
+// this is the part that spans the lip
+    cube([hallBaseWidth, hallTabWidth + hallTabReach + margin, standardDepth]);
+
+// this is rest of the hallway
+// just a place holder
+    translate([0, hallTabWidth + hallTabReach, 0])  {
+        cube([hallBaseWidth, trayDepth, trayDepth]);
+    }
+
+
+}
+
+
 module magHoleTest() {
     
     difference() {
@@ -59,8 +77,10 @@ module simpleHallway() {
 
 }
 
+hallwayInsert();
+
 // %roomBlank();
-hipHallway();
+// hipHallway();
 // mirror([0,1,0])
 // hipHallway();
 //  simpleHallway() ;
