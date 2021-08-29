@@ -38,7 +38,7 @@ module trayWithWalls() {
 difference() {
     trayWithWalls();
     doorwayArray();
-    versionStamp("3.0.0");
+    versionStamp("3.0.1");
    hallwayVoids();
     roomNumberRelief();
     floorTextureArray();

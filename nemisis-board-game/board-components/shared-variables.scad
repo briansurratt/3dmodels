@@ -55,9 +55,9 @@ trayDepth = standardDepth + hallTabDepth + smallallowance;
 
 totalHeight = trayDepth + trayWallHeight;
 
-hallSlotLength = hallTabLength + allowance;
-hallSlotWidth = hallTabWidth + allowance;
-hallSlotDepth = totalHeight + allowance;
+hallSlotLength = hallTabLength + margin;
+hallSlotWidth = hallTabWidth + margin;
+hallSlotDepth = totalHeight + margin;
 
 trayDiameter = tileDiameter + (mediumWall + margin + hallSlotWidth) * 2;
 
