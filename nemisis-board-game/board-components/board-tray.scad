@@ -117,8 +117,7 @@ module floorTexture() {
 
     translate([0,0, trayDepth - textureDepth + smallallowance])
 
-    #linear_extrude(textureDepth)
-    // square(size=[7, 7], center=true);
+    linear_extrude(textureDepth)
     
     polygon(
         [
