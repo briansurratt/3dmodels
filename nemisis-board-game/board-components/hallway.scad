@@ -36,26 +36,28 @@ module hallwayTab(a=0) {
 module simpleHallway() {
 
 
-    difference () {
-        
-        translate([-trayWidth, -hallBaseWidth/2, 0])
-        hallwayRough(trayWidth * 2);
+    union() {
+        difference () {
+            
+            translate([-trayWidth, -hallBaseWidth/2, 0])
+            hallwayRough(trayWidth * 2);
 
-        xOffset = trayWidth - 3;
+            xOffset = trayWidth - 3;
 
-        translate([0,0,trayDepth - 1]) 
-            mirror([1,0,0])
-            versionStamp("3.0.1");
+            translate([0,0,trayDepth - 1]) 
+                mirror([1,0,0])
+                versionStamp("3.0.1");
 
-    }
+        }
 
-    translate([trayWidth + hallTabBridge,0,0]) {
-        #hallwayTab(90);
-    }
+        translate([trayWidth + hallTabBridge,0,0]) {
+            #hallwayTab(90);
+        }
 
 
-    translate([-(trayWidth + hallTabBridge),0,0]) {
-        #hallwayTab(270);
+        translate([-(trayWidth + hallTabBridge),0,0]) {
+            #hallwayTab(270);
+        }
     }
 
 
@@ -80,25 +82,27 @@ module verticleHallway() {
     // the center of the tile
     offset =  trayWidth / 2;
 
-    difference() {
+    union() {
+        difference() {
 
-        intersection() {
-           roomBlank();
-            translate([0,offset,0]) {
-                centeredHallwayRough(100);
+            intersection() {
+            roomBlank();
+                translate([0,offset,0]) {
+                    centeredHallwayRough(100);
+                }
+            
+
             }
-        
+
+                    translate([0,offset,trayDepth - 1]) 
+                mirror([1,0,0])
+                versionStamp("3.0.1");
 
         }
-
-                translate([0,offset,trayDepth - 1]) 
-            mirror([1,0,0])
-            versionStamp("3.0.1");
-
+        
+        vertHallTab();
+        mirror([1,0,0]) vertHallTab();
     }
-    
-    vertHallTab();
-    mirror([1,0,0]) vertHallTab();
 
 }
 
