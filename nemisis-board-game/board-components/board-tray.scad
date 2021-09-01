@@ -47,8 +47,6 @@ difference() {
 
 roomNumber(2);    
 
-
-
 module tileSeat() {
 
     translate([0,0,trayDepth - tileVoidDepth])

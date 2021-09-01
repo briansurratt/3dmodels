@@ -26,8 +26,8 @@ tileVoidDepth = tileThickness / 2;
 
 
 
-hallBaseWidth = 33;
-hallVoidWidth = hallBaseWidth + allowance;
+hallBaseWidth = 32;
+hallVoidWidth = hallBaseWidth + margin + allowance;
 
 
 
@@ -59,7 +59,7 @@ trayDepth = standardDepth + hallTabDepth + smallallowance;
 
 totalHeight = trayDepth + trayWallHeight;
 
-hallSlotLength = hallTabLength + margin;
+hallSlotLength = hallTabLength + 2 * margin;
 hallSlotWidth = hallTabWidth + margin;
 hallSlotDepth = totalHeight + margin;
 
