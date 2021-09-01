@@ -66,8 +66,8 @@ module simpleHallway() {
 %roomBlank();
 // hipHallway();
 //  mirror([0,1,0])  hipHallway();
-// verticleHallway();
-simpleHallway() ;
+verticleHallway();
+// simpleHallway() ;
 
 module verticleHallway() {
 
@@ -91,17 +91,25 @@ module verticleHallway() {
 
         }
 
-        translate([0, offset, 0])
-        versionStamp("3.0.0");
+                translate([0,offset,trayDepth - 1]) 
+            mirror([1,0,0])
+            versionStamp("3.0.1");
 
     }
     
-    translate([])
-    #hallwayTab();
-
-
+    vertHallTab();
+    mirror([1,0,0]) vertHallTab();
 
 }
+
+module vertHallTab() {
+        translate([
+        cos(30) * (trayWidth + hallTabBridge),
+        sin(30) * (trayWidth + hallTabBridge),
+        0])
+    #hallwayTab(120);
+}
+
 
 module roomBlank() {
     linear_extrude(totalHeight) regularPolygon(6, trayRadius);
