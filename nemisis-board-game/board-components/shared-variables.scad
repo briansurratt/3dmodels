@@ -75,8 +75,11 @@ hallSlotRadius = trayWidth - mediumWall - hallSlotWidth / 2;
 
 doorPathRadius = trayWidth - doorVoidThickness / 2  + mediumWall;
     
-    // the gap between the tab and the rest of the hallway
-hallTabReach = trayWidth -  + hallSlotRadius;
+// the gap between the tab and the rest of the hallway
+hallTabReach = trayWidth - hallSlotRadius;
+
+// the spanning width in the hallway peices
+hallTabBridge = mediumWall + smallallowance;
 
 hallReceiverWidth = hallTabReach + margin;
 hallReceiverLength = hallVoidWidth;

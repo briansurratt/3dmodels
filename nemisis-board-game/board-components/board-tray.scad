@@ -38,8 +38,8 @@ module trayWithWalls() {
 difference() {
     trayWithWalls();
     doorwayArray();
-    versionStamp("3.0.4");
-   hallwayVoids();
+    versionStamp("3.0.5");
+    hallwayVoids();
     roomNumberRelief();
     floorTextureArray();
     tileSeat();
@@ -93,9 +93,9 @@ module roomNumberRelief() {
 
 module roomNumber(n = 1) {
 
-    translate([-roomNumberSize/2,-roomNumberSize/2, 0 ]) {
+    translate([-roomNumberSize/2,-roomNumberSize/2, 2 ]) {
         
-        linear_extrude(trayDepth - tileVoidDepth) {
+        linear_extrude(trayDepth - tileVoidDepth - 2) {
             
             text(str(n), font = "Arial Black:style=Bold", size=roomNumberSize);
 
