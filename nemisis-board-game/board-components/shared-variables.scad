@@ -32,6 +32,10 @@ hallVoidWidth = hallBaseWidth + margin + allowance;
 
 
 
+font1 = "Sathu:style=Regular";
+font2 = "Vipnagorgialla:style=Bold";
+font3 = "Squares Bold:style=Regular";
+
 
 magnetDia = 5;
 magnetThickness = 2;
@@ -39,8 +43,6 @@ magnetMargin = 0.25;
 
 roomNumberSize = 6;
 doorVoidThickness = mediumWall + 2;
-
-
 
 standardDepth = 3;                // starting point for all vertical dimensions
 
@@ -84,3 +86,9 @@ hallTabBridge = mediumWall + smallallowance;
 hallReceiverWidth = hallTabReach + margin;
 hallReceiverLength = hallVoidWidth;
 hallReceiverDepth = trayDepth;
+
+
+tokenRadius = 20;
+tokenThickness = 3;
+tokenRecessThickness = tokenThickness - 2;
+tokenRecessRadius = tokenRadius + 1;

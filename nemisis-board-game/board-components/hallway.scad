@@ -1,5 +1,6 @@
 include <shared-variables.scad>;
 include <modules.scad>;
+include <honeycomb.scad>;
 
 module hallwayRough(len = 50) {
     cube([len,hallBaseWidth ,trayDepth]);
@@ -63,12 +64,59 @@ module simpleHallway() {
 
 }
 
+difference() {
+    hallwayToken();
+    fingernailSlot();
+}
+
+
+// test Hallway
+// difference() {
+//     z = tokenRecessThickness * 2;
+//     cube([tokenRadius + 3,tokenRadius + 3, z], true);
+//     translate([0,0, 0.1]) {
+//        hallwayTokenRecess();
+//     }
+// }
+
+
+
+
+
+module hallwayToken(t="0") {
+    textThickeness = 1;
+    linear_extrude(height = tokenThickness) 
+        hexagon(tokenRadius);
+
+    translate([0,0,tokenThickness-textThickeness/2]) 
+    linear_extrude(height = textThickeness) 
+    #text(text = t, font = font3, size = 10, halign="center", valign="center");
+} 
+
+module hallwayTokenRecess() {
+    linear_extrude(height = tokenRecessThickness) {
+        hexagon(tokenRecessRadius);
+    }
+}
+
+module fingernailSlot() {
+    discRadius = 5;
+    slotHeight = tokenThickness / 2;
+    x = tokenRadius/2 + discRadius / 2 + 0.7;
+
+    circularArray(x) {
+        translate([0,0,slotHeight]) 
+        resize(newsize=[0,0,2])
+        sphere(r = discRadius);
+    }
+}
+
 // hallwayTab();
 
-%roomBlank();
+// %roomBlank();
 // hipHallway();
 //  mirror([0,1,0])  hipHallway();
-verticleHallway();
+//verticleHallway();
 // simpleHallway() ;
 
 module verticleHallway() {
